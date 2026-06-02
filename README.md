@@ -42,7 +42,3 @@ Power BI, and FHIR standards to real clinical datasets.
 English; Tamil; French
 
 ---
-
-<p align="center">
-  📫 <a href="https://www.linkedin.com/in/rai-ragavi">Connect on LinkedIn</a>
-</p>
