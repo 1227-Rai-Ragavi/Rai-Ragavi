@@ -19,7 +19,7 @@ Power BI, and FHIR standards to real clinical datasets.
 
 | Project | Description | Tools | Status |
 |---|---|---|---|
-| [ehr-data-quality-audit](https://github.com/Rai-Ragavi/ehr-data-quality-audit) | Audits EHR datasets for missing fields, duplicates & ICD-10 errors | Python, pandas, Excel | 🔄 In progress |
+| [ehr-data-quality-audit](https://github.com/Rai-Ragavi/ehr-data-quality-audit) | Audits EHR datasets for missing fields, duplicates & ICD-10 errors | Python, pandas, Excel | ✅ Completed |
 | [patient-readmission-analysis](https://github.com/Rai-Ragavi/patient-readmission-analysis) | Analyses 30-day readmission rates by diagnosis and demographics | Python, matplotlib | ✅ Completed | 
 | [healthcare-operations-dashboard](https://github.com/Rai-Ragavi/healthcare-operations-dashboard) | Interactive dashboard — patient volume, diagnoses, provider workload | Power BI / Tableau | 🔜 Coming soon |
 | [healthcare-sql-queries](https://github.com/Rai-Ragavi/healthcare-sql-queries) | Library of 15+ annotated SQL queries for real healthcare questions | SQL | 🔜 Coming soon |
@@ -141,8 +141,142 @@ Readmission/
 - **pandas** — data cleaning, multi-table joins, groupby aggregations, derived variables
 - **matplotlib / seaborn** — publication-ready charts with annotations and consistent theming
 - **Healthcare data literacy** — MIMIC-III schema, ICD-9 coding, CMS HRRP clinical context
+**Source:** PhysioNet MIMIC-III Clinical Database Demo v1.4  
+**Reference:** [MIMIC-III Demo](https://physionet.org/content/mimiciii-demo/1.4/)
+Real ICU data: 129 admissions | 100 unique patients. Readmission flags, age groups, and length of stay were computed directly from raw timestamps in the MIMIC-III files.
+---
+# EHR Data Quality Audit 🔍
+
+An end-to-end data quality audit pipeline for Electronic Health Record (EHR) datasets — built with Python and pandas, with a formatted multi-sheet Excel report as output.
+
+> *"Built from direct experience managing documentation across 6 EHR platforms — I know exactly where data quality breaks down."*
 
 ---
+
+## What It Does
+
+Audits a patient dataset across **6 issue categories** and produces a formatted Excel report flagging every record that needs review.
+
+| Check | What It Catches |
+|---|---|
+| Missing fields | Required fields (patient ID, provider, ICD-10, etc.) left blank |
+| Duplicate records | Exact duplicates, same patient + encounter, same name + DOB |
+| ICD-10 validation | Malformed codes (`DIAB`, `ICD-E11`, `Z999.99`, free-text leaks) |
+| Date format audit | Non-ISO dates (`MM/DD/YYYY`, `DD-MM-YYYY`), future dates in DOB |
+| Categorical inconsistencies | Non-standard gender values (`M`, `FEMALE`, `male`) |
+| Clinical outliers | Implausible BMI, systolic BP, diastolic BP values |
+
+---
+
+## Sample Results (520 synthetic records)
+
+```
+Total records:       520
+Records flagged:     131  (25.2%)
+Clean records:       389  (74.8%)
+
+Missing required fields:     32 records   HIGH
+Duplicate records:           26 records   HIGH
+Invalid ICD-10 codes:        23 records   HIGH
+Date format / future date:   28 records   MEDIUM
+Non-standard gender:         18 records   LOW
+Implausible clinical values: 16 records   HIGH
+```
+
+---
+
+## Excel Report Output
+
+The report is saved as `EHR_Quality_Report.xlsx` with 7 sheets:
+
+- **Summary** — KPI cards, issue breakdown table with severity ratings
+- **Field Completeness** — % complete per field, color-coded Good / Review / Poor
+- **Flagged Records** — all records needing review, sorted by issue count
+- **ICD-10 Errors** — invalid codes with the submitted value and format guidance
+- **Date & Format Issues** — non-standard dates and gender inconsistencies
+- **Duplicates** — flagged rows grouped by duplicate type
+- **Clinical Outliers** — implausible BMI and BP values with threshold reference
+
+---
+
+## Project Structure
+
+```
+ehr-data-quality-audit/
+│
+├── ehr-audit.ipynb        # Jupyter notebook — full audit pipeline:
+│                          # data loading, all 6 quality checks,
+│                          # summary stats, and Excel report generation
+│
+├── sample-ehr-data.csv    # Synthetic EHR dataset used for the audit
+│
+└── README.md
+```
+
+---
+
+## How to Run
+
+**1. Install dependencies**
+```bash
+pip install pandas openpyxl jupyter
+```
+
+**2. Open the notebook**
+```bash
+jupyter notebook ehr-audit.ipynb
+```
+
+**3. Run all cells**
+
+The notebook loads `sample-ehr-data.csv`, runs all six audit checks, prints summary statistics, and generates a formatted multi-sheet Excel report (`EHR_Quality_Report.xlsx`) in the same folder.
+
+---
+
+## Tech Stack
+
+- **Python 3.x**
+- **pandas** — data loading, missing value detection, duplicate logic
+- **re** (stdlib) — ICD-10 regex validation
+- **datetime** (stdlib) — date parsing and format detection
+- **openpyxl** — Excel workbook creation, formatting, multi-sheet output
+
+---
+
+## ICD-10 Validation Logic
+
+Uses the WHO ICD-10-CM format regex:
+
+```
+^[A-TV-Z][0-9]{2}(\.[A-Z0-9]{1,4})?$
+```
+
+Valid: `I10`, `E11.9`, `Z00.00`, `G43.909`  
+Invalid: `DIAB`, `ICD-E11`, `E-11`, `Z999.99`, `E11.99999`
+
+---
+
+## Clinical Context
+
+These checks target the most common failure points seen across real EHR platforms:
+
+- **Sentinel values** (`999`, `0`) used as nulls when a field doesn't accept blanks — common in legacy systems
+- **Free-text leaking into coded fields** (`DIAB` instead of `E11.9`) — common with manual entry workflows
+- **Date format fragmentation** across systems that export in different regional formats
+- **Duplicate patient IDs** introduced during EHR migrations when patient matching fails
+- **Non-standard gender values** that break downstream HEDIS and MIPS quality measure queries
+
+---
+
+## Dataset
+
+Uses a synthetic dataset generated with realistic demographic distributions, encounter patterns, and intentionally injected quality issues. No real patient data is used. The generator (`step1_generate_ehr.py`) can be adapted to audit real EHR exports by replacing the CSV source.
+
+---
+
+## Skills Demonstrated
+
+`Python` `pandas` `data cleaning` `healthcare data standards` `ICD-10` `EHR` `openpyxl` `Excel automation` `data quality` `HL7/FHIR readiness`
 
 ## 🩺 Clinical background
 
@@ -159,6 +293,4 @@ Readmission/
 English; Tamil; French
 
 ---
-**Source:** PhysioNet MIMIC-III Clinical Database Demo v1.4  
-**Reference:** [MIMIC-III Demo](https://physionet.org/content/mimiciii-demo/1.4/)
-Real ICU data: 129 admissions | 100 unique patients. Readmission flags, age groups, and length of stay were computed directly from raw timestamps in the MIMIC-III files.
+
