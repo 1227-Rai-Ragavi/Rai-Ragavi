@@ -288,7 +288,6 @@ A portfolio project demonstrating healthcare analytics using a synthetic star-sc
 
 - Star schema data modeling (fact + 3 dimension tables)
 - Power BI: DAX measures, model relationships, slicers, multi-page report layout
-- Synthetic dataset generation (Python / NumPy) modeled after real-world CMS/Synthea schemas
 - Healthcare KPI design: volume trends, throughput, diagnostic mix, provider utilization
 
 ---
