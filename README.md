@@ -1,18 +1,13 @@
 # Rai-Ragavi
 
 ## 🏥 About me
+## Clinical AI background
 
-I'm a dual-qualified healthcare professional (BDS + MSc Applied Psychology)
-with 3+ years of clinical documentation experience across 6 EHR platforms —
-Cerner, ModMed, eClinicalWorks, Meditech, CureMD, and Medent.
-
-I specialise in reviewing, correcting, and validating AI-generated clinical
-notes as a Super Medical Scribe — catching what the model misses because I
-understand the clinical context behind every line.
-
-I'm now building a healthcare data analyst portfolio, applying Python, SQL,
-Power BI, and FHIR standards to real clinical datasets.
-
+- **AI output QA**: 3+ years reviewing and correcting AI-generated clinical notes — catching hallucinations, ROS gaps, and medication errors before physician sign-off
+- **EHR depth**: 6 platforms (Cerner, ModMed, eClinicalWorks, Meditech, CureMD, Medent) across internal medicine, cardiology, orthopaedics, and dentistry
+- **Dental AI domain**: BDS-qualified reviewer for dental diagnostic AI tools — Pearl AI, Overjet, VideaHealth
+- **Behavioural health AI**: 1 year digital therapy platform — CBT-based frameworks directly applicable to conversational AI and mental health LLM safety
+- **Structured data**: Medical coding background in ICD-10-CM and CPT — clinical data classification that feeds AI training pipelines
 ---
 
 ## 📁 Portfolio projects
