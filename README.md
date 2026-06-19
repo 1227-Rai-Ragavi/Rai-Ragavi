@@ -32,9 +32,9 @@ I'm now building a healthcare data and AI portfolio — combining clinical domai
 
 | Project | Description | Tools | Status |
 |---|---|---|---|
-| [ehr-data-quality-audit](https://github.com/Rai-Ragavi/ehr-data-quality-audit) | Audits EHR datasets for missing fields, duplicates & ICD-10 errors | Python, pandas, Excel | ✅ Completed |
-| [patient-readmission-analysis](https://github.com/Rai-Ragavi/patient-readmission-analysis) | Analyses 30-day readmission rates by diagnosis and demographics | Python, matplotlib | ✅ Completed | 
-| [healthcare-operations-dashboard](https://github.com/Rai-Ragavi/healthcare-operations-dashboard) | Interactive dashboard — patient volume, diagnoses, provider workload | Power BI / Tableau | ✅ Completed|
+| [ehr-data-quality-audit]([https://github.com/Rai-Ragavi/ehr-data-quality-audit](https://github.com/1227-Rai-Ragavi/ehr-data-quality-audit)) | Audits EHR datasets for missing fields, duplicates & ICD-10 errors | Python, pandas, Excel | ✅ Completed |
+| [patient-readmission-analysis]([https://github.com/Rai-Ragavi/patient-readmission-analysis](https://github.com/1227-Rai-Ragavi/patient-readmission-analysis)) | Analyses 30-day readmission rates by diagnosis and demographics | Python, matplotlib | ✅ Completed | 
+| [healthcare-operations-dashboard]([https://github.com/Rai-Ragavi/healthcare-operations-dashboard](https://github.com/1227-Rai-Ragavi/Healthcare-ops-dashboard)) | Interactive dashboard — patient volume, diagnoses, provider workload | Power BI / Tableau | ✅ Completed|
 | [healthcare-sql-queries](https://github.com/Rai-Ragavi/healthcare-sql-queries) | Library of 15+ annotated SQL queries for real healthcare questions | SQL | 🔜 Coming soon |
 | [clinical-notes-nlp](https://github.com/Rai-Ragavi/clinical-notes-nlp) | Extracts diagnoses, medications & procedures from unstructured notes | Python, spaCy | 🔜 Coming soon |
 
